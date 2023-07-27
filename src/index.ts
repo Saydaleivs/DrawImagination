@@ -57,7 +57,7 @@ const bot: Telegraf<Context<Update>> = new Telegraf(
 );
 
 app.use(bot.webhookCallback('/' + process.env.BOT_TOKEN));
-bot.telegram.setWebhook(process.env.WEBHOOK_URL! + process.env.BOT_TOKEN);
+bot.telegram.setWebhook(process.env.WEBHOOK_URL! + '/' + process.env.BOT_TOKEN);
 
 bot.use(i18n);
 
