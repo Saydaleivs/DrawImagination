@@ -56,8 +56,8 @@ const bot: Telegraf<Context<Update>> = new Telegraf(
   { handlerTimeout: 9000000 }
 );
 
-app.use(bot.webhookCallback('/' + process.env.BOT_TOKEN));
-bot.telegram.setWebhook(process.env.WEBHOOK_URL! + '/' + process.env.BOT_TOKEN);
+// app.use(bot.webhookCallback('/' + process.env.BOT_TOKEN));
+// bot.telegram.setWebhook(process.env.WEBHOOK_URL! + '/' + process.env.BOT_TOKEN);
 
 bot.use(i18n);
 
@@ -132,4 +132,11 @@ bot.on('message', async (ctx) => {
   for (const image of response) {
     ctx.sendPhoto({ source: Buffer.from(image.base64, 'base64') });
   }
+});
+
+bot.launch({
+  webhook: {
+    domain: process.env.WEBHOOK_URL!,
+    port: 4000,
+  },
 });
